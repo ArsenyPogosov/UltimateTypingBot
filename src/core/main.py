@@ -1,3 +1,6 @@
+import sys
+sys.path.append('./src/')
+
 import init_logger
 from init_bot import dp
 import hooks
