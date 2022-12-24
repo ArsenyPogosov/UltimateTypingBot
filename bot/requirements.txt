@@ -1,0 +1,3 @@
+aiogram
+Levenshtein
+python-dotenv
