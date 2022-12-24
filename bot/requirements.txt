@@ -3,3 +3,4 @@ Levenshtein
 python-dotenv
 sqlalchemy
 psycopg2
+tabulate
