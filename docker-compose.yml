@@ -3,4 +3,4 @@ services:
   server:
     build: ./bot
   postgres:
-    build: ./postgres/
+    build: ./postgres

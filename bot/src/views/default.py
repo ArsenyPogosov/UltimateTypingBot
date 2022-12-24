@@ -1,5 +1,6 @@
 from components.task_storage import storage
 from components.give_score import give_score
+from components.update_score import update_score
 
 from datetime import datetime
 import logging
@@ -15,3 +16,6 @@ async def handler(message):
     
     await message.reply(f"Your score is {why}{score}!")
     logging.info(f"{username} get score {score}.")
+    if update_score(username, task_data.task_type, score):
+        await message.reply("New record!")
+        logging.info(f"{username} got new record.")

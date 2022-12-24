@@ -8,4 +8,11 @@ for config in os.listdir(directory):
         load_dotenv(file, encoding='utf8')
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
+
 LOG_LEVEL = os.getenv('LOG_LEVEL')
+
+DB_USER = os.getenv('DB_USER')
+DB_PASS = os.getenv('DB_PASS')
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
+DB_NAME = os.getenv('DB_NAME')

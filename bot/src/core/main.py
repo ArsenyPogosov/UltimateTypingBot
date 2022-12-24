@@ -2,6 +2,7 @@ import sys
 sys.path.append('./src/')
 
 import init_logger
+import components.init_postgres
 from init_bot import dp
 import hooks
 
