@@ -3,8 +3,9 @@ from components import scores
 import logging
 
 async def handler(message):
+    id = message.from_user.id
     username = message.from_user.username
-    scores.init_user(username)
+    scores.init_user(id, username)
 
-    await message.reply("Hi! I am UltimateTypingBot! Type /help for help.")
+    await message.reply("Привет! Я @UltimateTypingBot! Набери /help для помощи.")
     logging.info("Hi to " + message.from_user.username)

@@ -2,30 +2,33 @@ from components.init_postgres import db
 
 import logging
 
-def init_user(username):
-    db.execute(f"""
-    INSERT INTO scores (username, score_small, score_medium, score_large, is_public) 
-    VALUES ('{username}', NULL, NULL, NULL, TRUE);
+def init_user(id, username):
+    try:
+        db.execute(f"""
+    INSERT INTO scores (id, username, score_small, score_medium, score_large, is_public) 
+    VALUES ({id}, '{username}', NULL, NULL, NULL, FALSE);
     """)
+    except:
+        logging.info(f"User {id} already exists in postgres")
 
-def change_user_field(username, field_name, field_value):
+def change_user_field(id, field_name, field_value):
     db.execute(f"""
     UPDATE scores
     SET {field_name} = {field_value}
-    WHERE username = '{username}';
+    WHERE id = {id};
     """)
 
-def read_user_field(username, field_name):
+def read_user_field(id, field_name):
     response = db.execute(f"""
     SELECT {field_name}
     FROM scores
-    WHERE username = '{username}';
+    WHERE id = {id};
     """)
     for (r) in response:
         return r[0]
 
-def get_user_scores(username):
-    return [read_user_field(username, 'score_small'), read_user_field(username, 'score_medium'), read_user_field(username, 'score_large')]
+def get_user_scores(id):
+    return [read_user_field(id, 'score_small'), read_user_field(id, 'score_medium'), read_user_field(id, 'score_large')]
 
 def get_best(field_name, n):
     response = db.execute(f"""

@@ -6,16 +6,19 @@ from datetime import datetime
 import logging
 
 async def handler(message):
+    id = message.from_user.id
     username = message.from_user.username
-    if not storage.have_task(username):
+
+    if not storage.have_task(id):
         logging.info("User " + username + " send unwanted message.")
         return
 
-    task_data = storage.take_task(username)
+    task_data = storage.take_task(id)
     score, why = give_score(task_data.task, message.text, datetime.now().timestamp() - task_data.datetime.timestamp())
     
-    await message.reply(f"Your score is {why}{score}!")
+    await message.reply(f"Твой счет равен {why}{score}!")
     logging.info(f"{username} get score {score}.")
-    if update_score(username, task_data.task_type, score):
-        await message.reply("New record!")
+    
+    if update_score(id, task_data.task_type, score):
+        await message.reply("Новый рекорд!")
         logging.info(f"{username} got new record.")

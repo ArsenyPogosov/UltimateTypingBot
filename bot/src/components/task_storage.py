@@ -10,13 +10,13 @@ class TaskStorage:
     def __init__(self):
         self.data = dict()
 
-    def give_task(self, username, task_data):
-        self.data[username] = task_data
+    def give_task(self, userid, task_data):
+        self.data[userid] = task_data
     
-    def have_task(self, username):
-        return username in self.data
+    def have_task(self, userid):
+        return userid in self.data
 
-    def take_task(self, username):
-        return self.data.pop(username)
+    def take_task(self, userid):
+        return self.data.pop(userid)
 
 storage = TaskStorage()

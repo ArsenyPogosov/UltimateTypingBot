@@ -10,5 +10,5 @@ def make_table(table):
 async def handler(message):
     top = scores.get_best('score_' + parse(message.get_args()).name.lower(), 10)
 
-    await message.reply("\nCurrent top: \n```\n" + make_table(top) + "\n```", parse_mode="Markdown")
+    await message.reply("\nТекущий топ: \n```\n" + make_table(top) + "\n```", parse_mode="Markdown")
     logging.info("Send top to " + message.from_user.username)

@@ -9,9 +9,11 @@ async def send_task(message, task):
     await message.reply(" ".join(task))
 
 async def handler(message):
+    id = message.from_user.id
     username = message.from_user.username
-    if storage.have_task(username):
-        await message.reply("You already have a task.")
+
+    if storage.have_task(id):
+        await message.reply("У тебя уже есть задача.")
         logging.info("User " + username + " already has a task")
         return
 
@@ -19,6 +21,6 @@ async def handler(message):
     task = gen_task(type.value)
 
     await send_task(message, task)
-    storage.give_task(username, TaskData(task, type, datetime.now()))
+    storage.give_task(id, TaskData(task, type, datetime.now()))
 
     logging.info("Send " + type.name + " task to " + message.from_user.username)

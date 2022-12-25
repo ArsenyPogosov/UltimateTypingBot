@@ -1,11 +1,16 @@
 from components import scores
 
+from tabulate import tabulate
 import logging
 
-async def handler(message):
-    username = message.from_user.username
-    my_scores = scores.get_user_scores(username)
-    my_scores = ['-' if i is None else i for i in my_scores]
+def make_table(table):
+    return tabulate([table], headers=["small", "medium", "large"], tablefmt="fancy_grid")
 
-    await message.reply(f"Your scores are: {my_scores[0]}, {my_scores[1]}, {my_scores[2]}!")
+async def handler(message):
+    id = message.from_user.id
+    username = message.from_user.username
+
+    my_scores = scores.get_user_scores(id)
+
+    await message.reply(f"Твои счета:\n```\n" + make_table(my_scores) + "\n```", parse_mode="Markdown")
     logging.info("Send my_scores for "+ message.from_user.username)
