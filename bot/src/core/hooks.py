@@ -1,8 +1,8 @@
 from init_bot import dp
-
 from views import start, help, task, myscores, top, share, noshare, default
 
 from aiogram import types
+import logging
 
 @dp.message_handler(commands=['start'])
 async def start_hook(message: types.Message):
@@ -35,5 +35,4 @@ async def noshare_hook(message: types.Message):
 @dp.message_handler()
 async def default_hook(message: types.Message):
     await default.handler(message)
-
 

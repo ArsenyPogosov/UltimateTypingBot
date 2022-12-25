@@ -6,7 +6,10 @@ from datetime import datetime
 import logging
 
 async def send_task(message, task):
-    await message.reply(" ".join(task))
+    to_send = " ".join(task)
+    to_send = to_send.replace('о', 'o')
+    to_send = to_send.replace('с', 'c')
+    await message.reply(to_send, protect_content=True)
 
 async def handler(message):
     id = message.from_user.id
@@ -14,7 +17,7 @@ async def handler(message):
 
     if storage.have_task(id):
         await message.reply("У тебя уже есть задача.")
-        logging.info("User " + username + " already has a task")
+        logging.info(f"User {id} already has a task")
         return
 
     type = parse(message.get_args())
@@ -23,4 +26,4 @@ async def handler(message):
     await send_task(message, task)
     storage.give_task(id, TaskData(task, type, datetime.now()))
 
-    logging.info("Send " + type.name + " task to " + message.from_user.username)
+    logging.info(f"Send {type.name} task to user {id}")

@@ -9,4 +9,4 @@ async def handler(message):
     scores.change_user_field(id, 'is_public', "TRUE")
 
     await message.reply("Твои счета теперь публичны.")
-    logging.info("Public scores for " + message.from_user.username)
+    logging.info("Public scores for user {id}")

@@ -8,4 +8,4 @@ async def handler(message):
     scores.init_user(id, username)
 
     await message.reply("Привет! Я @UltimateTypingBot! Набери /help для помощи.")
-    logging.info("Hi to " + message.from_user.username)
+    logging.info(f"Hi to user {id}")

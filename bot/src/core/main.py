@@ -8,5 +8,8 @@ import hooks
 
 from aiogram.utils import executor
 
+def on_shutdown():
+    return
+
 if __name__ == '__main__':
-    executor.start_polling(dp)
+    executor.start_polling(dp, on_shutdown=on_shutdown)

@@ -23,4 +23,4 @@ async def handler(message):
 
 Удачи!
     """)
-    logging.info("Help to " + message.from_user.username)
+    logging.info(f"Help to user {message.from_user.id}.")

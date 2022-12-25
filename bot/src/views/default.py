@@ -17,8 +17,8 @@ async def handler(message):
     score, why = give_score(task_data.task, message.text, datetime.now().timestamp() - task_data.datetime.timestamp())
     
     await message.reply(f"Твой счет равен {why}{score}!")
-    logging.info(f"{username} get score {score}.")
+    logging.info(f"User {id} get score {score}.")
     
     if update_score(id, task_data.task_type, score):
         await message.reply("Новый рекорд!")
-        logging.info(f"{username} got new record.")
+        logging.info(f"User {id} got new record.")
